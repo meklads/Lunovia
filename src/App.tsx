@@ -28,15 +28,29 @@ export default function App() {
 
       {/* Header / Nav */}
       <header className="relative z-10 flex items-center justify-between px-6 py-6 md:px-12">
-        <motion.div
+         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center gap-3"
         >
-          {/* Logo Recreation (Small) */}
-          <div className="relative h-8 w-8 flex items-center justify-center border border-zinc-900 font-serif text-lg font-light italic">
-             L
-          </div>
+          {/* Logo from Image */}
+          <img 
+            src="/input_file_6.png" 
+            alt="L" 
+            className="h-8 w-auto object-contain"
+            onError={(e) => {
+              // Fallback to text-based square logo if image fails
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+              const parent = target.parentElement;
+              if (parent) {
+                const fallback = document.createElement('div');
+                fallback.className = "flex h-8 w-8 items-center justify-center border border-zinc-900 font-serif text-lg font-light italic";
+                fallback.innerText = "L";
+                parent.prepend(fallback);
+              }
+            }}
+          />
           <span className="text-[11px] font-semibold tracking-[0.4em] uppercase text-zinc-900">
             Lunovia
           </span>
@@ -66,29 +80,33 @@ export default function App() {
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="max-w-4xl"
         >
-          {/* Main Logo Container */}
-          <div className="mb-16 relative flex flex-col items-center">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
+           {/* Main Logo Container */}
+          <div className="mb-12 relative flex flex-col items-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, duration: 1.5 }}
-              className="flex flex-col items-center"
+              className="relative"
             >
-              <span className="font-serif text-[180px] leading-none text-zinc-900 md:text-[240px] font-extralight italic tracking-tighter">
-                L
-              </span>
-              <motion.div 
-                initial={{ width: 0 }}
-                animate={{ width: 60 }}
-                transition={{ delay: 0.8, duration: 1 }}
-                className="h-[1px] bg-zinc-300 my-4" 
+              <img 
+                src="/input_file_6.png" 
+                alt="Lunovia Brand" 
+                className="mx-auto w-full max-w-[320px] md:max-w-[480px] h-auto"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  const parent = target.parentElement;
+                  if (parent) {
+                    const fallback = document.createElement('div');
+                    fallback.className = "flex flex-col items-center";
+                    fallback.innerHTML = `
+                      <span class="font-serif text-[180px] leading-none text-zinc-900 md:text-[240px] font-extralight italic tracking-tighter">L</span>
+                      <h1 class="font-serif text-5xl tracking-[0.2em] uppercase text-zinc-900 md:text-7xl mb-2">Lunovia</h1>
+                    `;
+                    parent.appendChild(fallback);
+                  }
+                }}
               />
-              <h1 className="font-serif text-5xl tracking-[0.2em] uppercase text-zinc-900 md:text-7xl mb-2">
-                Lunovia
-              </h1>
-              <p className="text-[10px] font-medium tracking-[0.4em] uppercase text-zinc-400">
-                Crafted for Deep Restoration
-              </p>
             </motion.div>
           </div>
 
