@@ -80,13 +80,13 @@ export default function App() {
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="max-w-4xl"
         >
-           {/* Main Logo Container */}
+          {/* Main Logo Container */}
           <div className="mb-12 relative flex flex-col items-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, duration: 1.5 }}
-              className="relative"
+              className="relative flex flex-col items-center"
             >
               <img 
                 src="/input_file_6.png" 
@@ -107,6 +107,9 @@ export default function App() {
                   }
                 }}
               />
+              <p className="mt-4 text-[10px] font-medium tracking-[0.4em] uppercase text-zinc-400">
+                Crafted for Deep Restoration
+              </p>
             </motion.div>
           </div>
 
