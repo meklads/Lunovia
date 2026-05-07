@@ -1,0 +1,212 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import { motion, AnimatePresence } from "motion/react";
+import { Mail, ArrowRight, Instagram, Facebook, Twitter } from "lucide-react";
+import React, { useState } from "react";
+
+export default function App() {
+  const [email, setEmail] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      setIsSubmitted(true);
+      setEmail("");
+    }
+  };
+
+  return (
+    <div className="relative min-h-screen overflow-hidden font-sans selection:bg-zinc-200">
+      {/* Background Atmosphere */}
+      <div className="absolute inset-0 z-0 bg-white">
+        <img
+          src="https://images.unsplash.com/photo-1621259182978-fbf931226963?auto=format&fit=crop&q=80&w=2000"
+          className="h-full w-full object-cover opacity-20 grayscale brightness-110 blur-[1px]"
+          alt="Feather background"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-white/40 to-zinc-100/80" />
+      </div>
+
+      {/* Header / Nav */}
+      <header className="relative z-10 flex items-center justify-between px-6 py-6 md:px-12">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="flex items-center gap-3"
+        >
+          {/* Logo Recreation (Small) */}
+          <div className="relative h-10 w-10 flex items-center justify-center">
+             <span className="font-serif text-3xl font-light italic text-[#B49770]">L</span>
+             <div className="absolute -bottom-1 left-0 w-full h-[1px] bg-[#B49770] opacity-30" />
+          </div>
+          <span className="text-[11px] font-semibold tracking-[0.4em] uppercase text-zinc-900 pt-1">
+            Lunovia
+          </span>
+        </motion.div>
+
+        <motion.nav
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.1 }}
+          className="flex items-center gap-8"
+        >
+          <div className="hidden gap-8 text-[11px] font-medium tracking-[0.2em] uppercase lg:flex text-zinc-400">
+            <a href="#" className="hover:text-zinc-900 transition-colors">Our Story</a>
+            <a href="#" className="hover:text-zinc-900 transition-colors">Science</a>
+          </div>
+          <button className="text-[11px] font-semibold tracking-[0.2em] uppercase border-b border-zinc-900 pb-0.5 hover:text-[#B49770] hover:border-[#B49770] transition-all text-zinc-900">
+            Login
+          </button>
+        </motion.nav>
+      </header>
+
+      {/* Main Content */}
+      <main className="relative z-10 flex min-h-[calc(100vh-100px)] flex-col items-center justify-center px-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="max-w-4xl"
+        >
+          {/* Main Logo Section */}
+          <div className="mb-16 relative flex flex-col items-center">
+            {/* Try to show uploaded image, with CSS fallback */}
+            <div className="relative">
+              <motion.img 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 1.5 }}
+                src="input_file_4.png" 
+                alt="Lunovia Brand" 
+                className="mx-auto w-full max-w-[280px] md:max-w-[380px] h-auto mix-blend-multiply relative z-10"
+                onError={(e) => (e.currentTarget.style.display = 'none')}
+              />
+              
+              {/* CSS/SVG Recreation as Fallback (always rendered behind or if img fails) */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none opacity-90">
+                <span className="font-serif text-[180px] leading-none text-[#B49770] md:text-[240px] font-extralight italic tracking-tighter select-none">
+                  L
+                </span>
+                <div className="mt-4 flex flex-col items-center">
+                  <h1 className="font-serif text-4xl tracking-[0.25em] uppercase text-zinc-900 md:text-6xl mb-3">
+                    Lunovia
+                  </h1>
+                  <p className="text-[10px] font-medium tracking-[0.6em] uppercase text-[#B49770]">
+                    Better Sleep. Better You.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+            className="mb-16 mt-12"
+          >
+            <h2 className="font-serif text-3xl italic text-zinc-800 md:text-5xl tracking-wide font-light">
+              Coming Soon
+            </h2>
+            <p className="mt-8 mx-auto max-w-md text-sm leading-relaxed tracking-wider text-zinc-500 font-light italic">
+              We are perfecting the art of restoration. 
+              The ultimate sleep experience is arriving soon.
+            </p>
+          </motion.div>
+
+          {/* Tagline from Image 1 */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.4 }}
+            className="mb-12"
+          >
+             <p className="text-[10px] font-medium tracking-[0.6em] uppercase text-zinc-400">
+                Better sleep. Better you.
+             </p>
+          </motion.div>
+
+          {/* Subscription / Notify Me */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.6 }}
+            className="mx-auto w-full max-w-md"
+          >
+            <AnimatePresence mode="wait">
+              {!isSubmitted ? (
+                <motion.form
+                  key="form"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  onSubmit={handleSubmit}
+                  className="flex flex-col gap-4 sm:flex-row"
+                >
+                  <div className="relative flex-1">
+                    <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
+                    <input
+                      type="email"
+                      required
+                      placeholder="Enter your email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full border-b border-zinc-300 bg-transparent py-3 pl-10 pr-4 text-sm outline-none focus:border-zinc-900 transition-colors"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="flex items-center justify-center gap-2 bg-zinc-900 px-8 py-3 text-[10px] font-bold tracking-widest uppercase text-white transition-all hover:bg-zinc-800 active:scale-[0.98]"
+                  >
+                    Notify Me
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                </motion.form>
+              ) : (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="rounded-lg bg-zinc-900/5 p-6 backdrop-blur-sm"
+                >
+                  <p className="font-serif text-xl italic text-zinc-800">
+                    We'll let you know when we're ready.
+                  </p>
+                  <p className="mt-2 text-xs tracking-wider text-zinc-500">
+                    Thank you for joining our inner circle.
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        </motion.div>
+      </main>
+
+      {/* Footer / Social */}
+      <footer className="relative z-10 p-8 flex flex-col md:flex-row items-center justify-between gap-6 border-t border-zinc-200/50 bg-white/20 backdrop-blur-sm">
+        <div className="flex gap-6 text-zinc-400">
+          <a href="#" className="hover:text-zinc-900 transition-colors"><Instagram className="h-4 w-4" /></a>
+          <a href="#" className="hover:text-zinc-900 transition-colors"><Facebook className="h-4 w-4" /></a>
+          <a href="#" className="hover:text-zinc-900 transition-colors"><Twitter className="h-4 w-4" /></a>
+        </div>
+        
+        <p className="text-[10px] tracking-[0.2em] uppercase text-zinc-400">
+          © 2026 Lunovia. Store coming late 2026.
+        </p>
+
+        <div className="flex gap-4 text-[9px] font-medium tracking-[0.1em] uppercase text-zinc-400">
+          <a href="#" className="hover:text-zinc-900 transition-colors">Privacy</a>
+          <a href="#" className="hover:text-zinc-900 transition-colors">Terms</a>
+        </div>
+      </footer>
+
+      {/* Decorative Elements */}
+      <div className="absolute -left-20 top-1/4 h-64 w-64 rounded-full bg-zinc-300/10 blur-[120px] pointer-events-none" />
+      <div className="absolute -right-20 bottom-1/4 h-64 w-64 rounded-full bg-zinc-400/10 blur-[120px] pointer-events-none" />
+    </div>
+  );
+}
