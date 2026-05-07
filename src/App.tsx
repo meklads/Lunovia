@@ -23,12 +23,7 @@ export default function App() {
     <div className="relative min-h-screen overflow-hidden font-sans selection:bg-zinc-200">
       {/* Background Atmosphere */}
       <div className="absolute inset-0 z-0 bg-white">
-        <img
-          src="https://images.unsplash.com/photo-1621259182978-fbf931226963?auto=format&fit=crop&q=80&w=2000"
-          className="h-full w-full object-cover opacity-20 grayscale brightness-110 blur-[1px]"
-          alt="Feather background"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-white/40 to-zinc-100/80" />
+        <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 via-white to-zinc-100/50" />
       </div>
 
       {/* Header / Nav */}
@@ -39,11 +34,10 @@ export default function App() {
           className="flex items-center gap-3"
         >
           {/* Logo Recreation (Small) */}
-          <div className="relative h-10 w-10 flex items-center justify-center">
-             <span className="font-serif text-3xl font-light italic text-[#B49770]">L</span>
-             <div className="absolute -bottom-1 left-0 w-full h-[1px] bg-[#B49770] opacity-30" />
+          <div className="relative h-8 w-8 flex items-center justify-center border border-zinc-900 font-serif text-lg font-light italic">
+             L
           </div>
-          <span className="text-[11px] font-semibold tracking-[0.4em] uppercase text-zinc-900 pt-1">
+          <span className="text-[11px] font-semibold tracking-[0.4em] uppercase text-zinc-900">
             Lunovia
           </span>
         </motion.div>
@@ -58,7 +52,7 @@ export default function App() {
             <a href="#" className="hover:text-zinc-900 transition-colors">Our Story</a>
             <a href="#" className="hover:text-zinc-900 transition-colors">Science</a>
           </div>
-          <button className="text-[11px] font-semibold tracking-[0.2em] uppercase border-b border-zinc-900 pb-0.5 hover:text-[#B49770] hover:border-[#B49770] transition-all text-zinc-900">
+          <button className="text-[11px] font-semibold tracking-[0.2em] uppercase border-b border-zinc-900 pb-0.5 hover:text-zinc-500 transition-all text-zinc-900">
             Login
           </button>
         </motion.nav>
@@ -72,48 +66,43 @@ export default function App() {
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="max-w-4xl"
         >
-          {/* Main Logo Section */}
+          {/* Main Logo Container */}
           <div className="mb-16 relative flex flex-col items-center">
-            {/* Try to show uploaded image, with CSS fallback */}
-            <div className="relative">
-              <motion.img 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3, duration: 1.5 }}
-                src="input_file_4.png" 
-                alt="Lunovia Brand" 
-                className="mx-auto w-full max-w-[280px] md:max-w-[380px] h-auto mix-blend-multiply relative z-10"
-                onError={(e) => (e.currentTarget.style.display = 'none')}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, duration: 1.5 }}
+              className="flex flex-col items-center"
+            >
+              <span className="font-serif text-[180px] leading-none text-zinc-900 md:text-[240px] font-extralight italic tracking-tighter">
+                L
+              </span>
+              <motion.div 
+                initial={{ width: 0 }}
+                animate={{ width: 60 }}
+                transition={{ delay: 0.8, duration: 1 }}
+                className="h-[1px] bg-zinc-300 my-4" 
               />
-              
-              {/* CSS/SVG Recreation as Fallback (always rendered behind or if img fails) */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none opacity-90">
-                <span className="font-serif text-[180px] leading-none text-[#B49770] md:text-[240px] font-extralight italic tracking-tighter select-none">
-                  L
-                </span>
-                <div className="mt-4 flex flex-col items-center">
-                  <h1 className="font-serif text-4xl tracking-[0.25em] uppercase text-zinc-900 md:text-6xl mb-3">
-                    Lunovia
-                  </h1>
-                  <p className="text-[10px] font-medium tracking-[0.6em] uppercase text-[#B49770]">
-                    Better Sleep. Better You.
-                  </p>
-                </div>
-              </div>
-            </div>
+              <h1 className="font-serif text-5xl tracking-[0.2em] uppercase text-zinc-900 md:text-7xl mb-2">
+                Lunovia
+              </h1>
+              <p className="text-[10px] font-medium tracking-[0.6em] uppercase text-zinc-400">
+                Sleep & Recovery
+              </p>
+            </motion.div>
           </div>
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
-            className="mb-16 mt-12"
+            className="mb-16"
           >
             <h2 className="font-serif text-3xl italic text-zinc-800 md:text-5xl tracking-wide font-light">
               Coming Soon
             </h2>
-            <p className="mt-8 mx-auto max-w-md text-sm leading-relaxed tracking-wider text-zinc-500 font-light italic">
-              We are perfecting the art of restoration. 
+            <p className="mt-6 mx-auto max-w-md text-sm leading-relaxed tracking-wider text-zinc-500 font-light italic">
+              We are perfecting the art of restoration. <br />
               The ultimate sleep experience is arriving soon.
             </p>
           </motion.div>
