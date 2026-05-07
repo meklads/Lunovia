@@ -86,8 +86,8 @@ export default function App() {
               <h1 className="font-serif text-5xl tracking-[0.2em] uppercase text-zinc-900 md:text-7xl mb-2">
                 Lunovia
               </h1>
-              <p className="text-[10px] font-medium tracking-[0.6em] uppercase text-zinc-400">
-                Sleep & Recovery
+              <p className="text-[10px] font-medium tracking-[0.4em] uppercase text-zinc-400">
+                Crafted for Deep Restoration
               </p>
             </motion.div>
           </div>
